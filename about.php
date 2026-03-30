@@ -94,14 +94,14 @@ Our mission is to serve every patient with integrity, empathy, and excellence—
 	</div>
 </section>
 
-<section class="section team">
+<!-- <section class="section team">
 
-</section>
+</section> -->
 
-<section class="section testimonial">
+<!-- <section class="section testimonial">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-6 offset-lg-6">
+			<div class="col-lg-12 offset-lg-6">
 				<div class="section-title">
 					<h2 class="mb-4">What they say about us</h2>
 					<div class="divider  my-4"></div>
@@ -168,7 +168,7 @@ Our mission is to serve every patient with integrity, empathy, and excellence—
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 <!-- footer Start -->
       
 <?php include "footer.php"; ?>

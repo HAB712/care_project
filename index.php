@@ -72,6 +72,25 @@
       .faq-wrap { margin: 1rem; padding: .75rem; }
       .faq-header { padding: .75rem; }
     }
+
+	
+	header, .site-header, .navbar {
+    position: relative; /* keep in flow unless intentionally fixed */
+    z-index: 1100;
+}
+
+/* Banner should sit below header */
+.banner, .hero {
+    position: relative;
+    z-index: 1000;
+}
+
+/* Ensure login cards and feature-items appear above banner */
+.login-card, .card-login, .feature-item {
+    position: relative;
+    z-index: 1200;
+}
+
   </style>
 
 </head>
@@ -90,20 +109,17 @@
 			<div class="col-lg-6 col-md-12 col-xl-7">
 				<div class="block">
 					<div class="divider mb-3"></div>
-					<span class="text-uppercase text-sm letter-spacing ">Total Health care solution</span>
-					<h1 class="mb-3 mt-3">Your most trusted health partner</h1>
+					<span class="text-uppercase text-sm letter-spacing mt-3" style="color:#091E3E;">Total Health care solution</span>
+					<h1 class="mb-3 mt-4" style="color:#091E3E;">Your most trusted health partner</h1>
 					
-					<p class="mb-4 pr-5">Welcome to Care Hospital — delivering compassionate, expert healthcare with advanced technology and a patient-first approach. Your health, our priority.</p>
+					<p class="mb-4 pr-5" style="color:#091E3E;">Welcome to Care Hospital — delivering compassionate, expert healthcare with advanced technology and a patient-first approach. Your health, our priority.</p>
 					
 				</div>
 			</div>
 		</div>
-
-	
-
-
 	</div>
 </section>
+
 	<?php if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'patient' ){?>
 <section class="features">
 	<div class="container">

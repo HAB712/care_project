@@ -36,6 +36,77 @@ $sqlmain .= $search_condition;
     <title>Patients</title>
 
     <style>
+        /* Add this to your existing <style> section */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay.show {
+    display: flex;
+}
+
+.popup {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: transitionIn-Y-bottom 0.5s ease-out;
+}
+
+@keyframes transitionIn-Y-bottom {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.add-doc-form-container {
+    width: 100%;
+    padding: 20px;
+}
+
+.label-td {
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.label-td label {
+    margin: 0;
+    font-weight: 500;
+    color: #333;
+}
         .popup { animation: transitionIn-Y-bottom 0.5s; }
         .sub-table { animation: transitionIn-Y-bottom 0.5s; }
         .sub-table tbody tr { transition: all 0.3s ease; }
@@ -150,97 +221,74 @@ $sqlmain .= $search_condition;
     </div>
 </div>
 
-    <?php 
-    if($_GET){
+<?php 
+    if(isset($_GET['action']) && $_GET['action'] == 'view' && isset($_GET['id'])){
+        $id = mysqli_real_escape_string($con, $_GET["id"]);
+        $sqlmains = "SELECT * FROM appointment WHERE id = '$id'";
+        $resultmains = mysqli_query($con, $sqlmains);
         
-        $id= $_GET["id"];
-        $action = $_GET["action"];
-            $sqlmains = "select * from appointment where id= '$id'";
-            $resultmains = mysqli_query($con, $sqlmains);
+        if($resultmains && mysqli_num_rows($resultmains) > 0) {
             $row = mysqli_fetch_assoc($resultmains);
-            $name=$row["pt_name"];
-            $email=$row["pt_email"];
-            $gender =$row["pt_gender"];
-            $dob=$row["dob"];
-            $tele=$row["phone"];
+            $name = $row["pt_name"];
+            $email = $row["pt_email"];
+            $gender = $row["pt_gender"];
+            $dob = $row["dob"];
+            $tele = $row["phone"];
             $status = $row["status"];
 
             echo '
-            <div id="popup1" class="overlay">
-                    <div class="popup">
-                    <center>
-                        <a class="close" href="patient.php">&times;</a>
-                        <div class="content">
-
-                        </div>
-                        <div style="display: flex;justify-content: center;">
-                        <table width="80%" class="sub-table scrolldown add-doc-form-container" border="0">
-                        
-                          
-                            
-                            <tr>
-                               
-                                <td class="label-td" ">
-                                    <h3 class="p-3 text-center">Patient Details</h3>
-                                    <label for="name" class="form-label">Name: '.$name.'</label>
-                                </td>
-                            </tr>
-                          
-                            <tr>
-                                <td class="label-td" >
-                                    <label for="Email" class="form-label">Email: '.$email.'</label>
-                                </td>
-                            </tr>
-                           
+            <div id="popup1" class="overlay show">
+                <div class="popup">
+                    <a class="close" href="patient.php">&times;</a>
+                    <div style="display: flex; justify-content: center;">
+                        <table class="sub-table add-doc-form-container" border="0">
                             <tr>
                                 <td class="label-td">
-                                    <label for="nic" class="form-label">Gender: '.$gender.' </label>
+                                    <h3 class="text-center mb-3">Patient Details</h3>
                                 </td>
                             </tr>
-                            
-                            
-
                             <tr>
-                                <td class="label-td" colspan="2">
-                                    <label for="Tele" class="form-label">Telephone: '.$tele.'</label>
+                                <td class="label-td">
+                                    <label class="form-label"><strong>Name:</strong> '.htmlspecialchars($name).'</label>
                                 </td>
                             </tr>
-                        
-
                             <tr>
-                                
-                                <td class="label-td" colspan="2">
-                                    <label for="name" class="form-label">Date of Birth: '.$dob.'</label>
+                                <td class="label-td">
+                                    <label class="form-label"><strong>Email:</strong> '.htmlspecialchars($email).'</label>
                                 </td>
                             </tr>
-
-  
-                            <tr>   
-                                <td class="label-td" colspan="2">
-                                    <label for="name" class="form-label">Status: '.$status.'</label>
-                                </td>
-                            </tr>
-                    
                             <tr>
-                                <td colspan="2">
-                                    <a href="patient.php"><input type="button" value="OK" class="login-btn btn-primary-soft btn" ></a>
-                                
-                                    
+                                <td class="label-td">
+                                    <label class="form-label"><strong>Gender:</strong> '.htmlspecialchars($gender).'</label>
                                 </td>
-                
                             </tr>
-                           
-
+                            <tr>
+                                <td class="label-td">
+                                    <label class="form-label"><strong>Telephone:</strong> '.htmlspecialchars($tele).'</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label-td">
+                                    <label class="form-label"><strong>Date of Birth:</strong> '.htmlspecialchars($dob).'</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label-td">
+                                    <label class="form-label"><strong>Status:</strong> '.htmlspecialchars($status).'</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label-td text-center">
+                                    <a href="patient.php" class="btn btn-primary">Close</a>
+                                </td>
+                            </tr>
                         </table>
-                        </div>
-                    </center>
-                    <br><br>
-            </div>
+                    </div>
+                </div>
             </div>
             ';
-        
+        }
     };
-
 ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

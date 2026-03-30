@@ -39,7 +39,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         $rs = mysqli_query($con, $Insquery);
 
         if ($rs) {
-          // Set session variables
+   
           $_SESSION["user_name"] = $name;
           $_SESSION["user_email"] = $email;
           $_SESSION["user_id"] = mysqli_insert_id($con);

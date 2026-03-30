@@ -3,7 +3,6 @@
 include 'connection.php';?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <title>Care Hospital</title>
@@ -63,9 +62,6 @@ include 'connection.php';?>
 
 
 <?php include "header.php"?>
-
-
-
  <!-- Banner TStart -->
     <div class="container-fluid p-0">
      <div id="header-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
@@ -157,19 +153,8 @@ include 'connection.php';?>
       </div>
    </div>     
 
-    <!-- Team End -->
-
-    
-
- 
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg  btn-lg-square rounded back-to-top" style="background-color:#E12454;"><i class="bi bi-arrow-up text-white"></i></a>
-
-			
+    <a href="#" class="btn btn-lg  btn-lg-square rounded back-to-top" style="background-color:#E12454;"><i class="bi bi-arrow-up text-white"></i></a>			
 <!-- footer Start -->
-      
 <?php include "footer.php"; ?>
 
 
