@@ -2,9 +2,9 @@
 session_start();
 include("../connection.php");
 
-// Handle form submissions
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Add new FAQ
+  
     if (isset($_POST['add_faq'])) {
         $question = mysqli_real_escape_string($con, $_POST['question']);
         $answer = mysqli_real_escape_string($con, $_POST['answer']);
@@ -19,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     
-    // Update FAQ
     if (isset($_POST['update_faq'])) {
         $id = (int)$_POST['faq_id'];
         $question = mysqli_real_escape_string($con, $_POST['question']);
@@ -36,11 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Delete FAQ
 if (isset($_GET['delete_id'])) {
     $id = (int)$_GET['delete_id'];
-    
-    // Confirm deletion with JavaScript
     echo "<script>
             if(confirm('Are you sure you want to delete this FAQ?')) {
                 window.location.href = 'faq.php?confirm_delete=$id';
@@ -51,7 +47,6 @@ if (isset($_GET['delete_id'])) {
     exit();
 }
 
-// Confirm delete after JavaScript confirmation
 if (isset($_GET['confirm_delete'])) {
     $id = (int)$_GET['confirm_delete'];
     
@@ -65,7 +60,6 @@ if (isset($_GET['confirm_delete'])) {
     }
 }
 
-// Fetch all FAQs
 $faqs = [];
 $result = mysqli_query($con, "SELECT * FROM faqs ORDER BY id DESC");
 if ($result && mysqli_num_rows($result) > 0) {
@@ -74,7 +68,6 @@ if ($result && mysqli_num_rows($result) > 0) {
     }
 }
 
-// Check if we're in edit mode
 $edit_mode = false;
 $edit_question = '';
 $edit_answer = '';
@@ -89,7 +82,6 @@ if (isset($_GET['edit_id'])) {
         $edit_answer = htmlspecialchars($edit_faq['answer']);
         $edit_mode = true;
     } else {
-        // If FAQ not found, redirect to normal mode
         header("Location: faq.php");
         exit();
     }
@@ -103,76 +95,10 @@ if (isset($_GET['edit_id'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ Management</title>
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-blue: #0d6efd;
-            --blue-hover: #0b5ed7;
-            --light-blue: #e7f1ff;
-            --primary-red: #dc3545;
-            --red-hover: #bb2d3b;
-            --sidebar-width: 250px;
-        }
-        
-        .dash-body {
-            padding: 20px;
-            margin-left: var(--sidebar-width);
-            transition: all 0.3s ease;
-        }
-        
-        @media (max-width: 992px) {
-            .dash-body {
-                margin-left: 0;
-                padding-bottom: 80px;
-            }
-        }
-        
-        .btn-soft-primary {
-            background-color: var(--light-blue);
-            color: var(--primary-blue);
-            border: 1px solid var(--primary-blue);
-        }
-        
-        .btn-soft-primary:hover {
-            background-color: var(--primary-blue);
-            color: white;
-        }
-        
-        .faq-item {
-            border-left: 4px solid var(--primary-blue);
-            transition: all 0.3s ease;
-        }
-        
-        .faq-item:hover {
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        }
-        
-        .action-buttons .btn {
-            padding: 0.25rem 0.5rem;
-            font-size: 0.875rem;
-        }
-        
-        @media (max-width: 576px) {
-            .mobile-hidden {
-                display: none;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-                gap: 0.25rem;
-            }
-        }
-        
-        .card-header.bg-warning {
-            background-color: #ffc107 !important;
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/faq.css">
 </head>
 <body>
     <?php include 'sidebar.php'; ?>

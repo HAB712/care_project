@@ -11,89 +11,16 @@ include("../connection.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-blue: #0d6efd;
-            --blue-hover: #0b5ed7;
-            --light-blue: #e7f1ff;
-            --primary-red: #dc3545;
-            --red-hover: #bb2d3b;
-            --sidebar-width: 250px;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
-            padding-bottom: 70px; /* Space for mobile bottom nav */
-        }
-       
-        
-        /* Main content area */
-        .main-content {
-            margin-left: var(--sidebar-width);
-            padding: 20px;
-        }
-        
-        /* Dashboard cards */
-        .dashboard-card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-        
-        .dashboard-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .card-icon {
-            font-size: 2rem;
-            opacity: 0.7;
-        }
-        
-        /* Tables */
-        .data-table {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        
-        .data-table thead {
-            background-color: var(--primary-blue);
-            color: white;
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 992px) {
-       
-            .main-content {
-                margin-left: 0;
-            }
-   
-        }
-        
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fade {
-            animation: fadeIn 0.5s ease-out;
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/admindashb.css">
 </head>
 <body>
-    <!-- Sidebar - Hidden on mobile -->
+
     <?php include 'sidebar.php'; ?>
 
     <!-- Main Content -->
     <div class="main-content">
-        <!-- Top Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-white mb-4 rounded shadow-sm">
             <div class="container-fluid">
                 <h4 class="mb-0 text-primary">Admin Panel</h4>
@@ -272,7 +199,6 @@ include("../connection.php");
         </div>
     </div>
 
-    <!-- Mobile Bottom Navigation - Shows only on small screens -->
     <div class="mobile-bottom-nav d-lg-none">
         <a href="index.php" class="mobile-nav-item active">
             <i class="fas fa-tachometer-alt"></i>

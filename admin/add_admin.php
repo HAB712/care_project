@@ -11,19 +11,15 @@ if(isset($_POST['ins'])){
     // Escape all inputs
     $name = mysqli_real_escape_string($con, trim($_POST['name']));
     $email = mysqli_real_escape_string($con, trim($_POST['email']));
-    $password = $_POST['pass']; // Don't escape password - we'll hash it
+    $password = $_POST['pass'];
     $phone = mysqli_real_escape_string($con, trim($_POST['phone']));
     
     $errors = [];
 
-    // Validations
-    
-    // Name validation
     if(!preg_match('/^[A-Za-z]{3,50}$/', $name)){
         $errors[] = 'Name must be 3-50 characters with letters and no spaces';
     }
 
-    // Phone validation
     if(!preg_match('/^[0][3][0-9]{2}[-][0-9]{7}$/', $phone)){
         $errors[] = 'Phone number must be in the format 0302-xxxxxxx';
     }
@@ -49,14 +45,14 @@ if(isset($_POST['ins'])){
         $errors[] = 'Email already exists.';
     }
 
-    // Check for errors
+
     if (!empty($errors)) {
         $errorMessages = implode("\\n", $errors);
         echo "<script>alert('$errorMessages'); window.history.back();</script>";
         exit();
     }
 
-    // Hash the password
+
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     
     if (!$hashed_password) {
@@ -64,7 +60,6 @@ if(isset($_POST['ins'])){
         exit();
     }
 
-    // Build query with escaped values
     $query = "INSERT INTO signup (name, email, password, phone, role) 
               VALUES ('$name', '$email', '$hashed_password', '$phone', 'A')";
     
@@ -85,14 +80,8 @@ if(isset($_POST['ins'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add City and Specialization</title>
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -281,7 +270,6 @@ if(isset($_POST['ins'])){
                         </div>
                         <div class="card-body">
                             <form id="adminAddForm" class="needs-validation" novalidate action="add_admin.php" method="post">
-                                <!-- Name Field -->
                                 <div class="mb-4">
                                     <label for="name" class="form-label">Full Name</label>
                                     <div class="input-group">
@@ -291,8 +279,6 @@ if(isset($_POST['ins'])){
                                     <div class="form-text">3-50 characters, letters and no spaces</div>
                                     <div class="invalid-feedback">Please provide a valid name</div>
                                 </div>
-                                
-                                <!-- Phone Field -->
                                 <div class="mb-4">
                                     <label for="phone" class="form-label">Phone Number</label>
                                     <div class="input-group">
@@ -301,8 +287,6 @@ if(isset($_POST['ins'])){
                                     </div>
                                     <div class="invalid-feedback">Please provide a valid phone number</div>
                                 </div>
-                                
-                                <!-- Email Field -->
                                 <div class="mb-4">
                                     <label for="email" class="form-label">Email Address</label>
                                     <div class="input-group">
@@ -311,8 +295,6 @@ if(isset($_POST['ins'])){
                                     </div>
                                     <div class="invalid-feedback">Please provide a valid email address</div>
                                 </div>
-                                
-                                <!-- Password Field -->
                                 <div class="mb-4">
                                     <label for="password" class="form-label">Password</label>
                                     <div class="input-group">
@@ -325,15 +307,11 @@ if(isset($_POST['ins'])){
                                     <div class="form-text">Minimum 8 characters</div>
                                     <div class="invalid-feedback">Password must meet requirements</div>
                                 </div>
-                                
-                                <!-- Admin Role Confirmation -->
                                 <div class="mb-4 form-check">
                                     <input type="checkbox" class="form-check-input" id="confirmAdmin" required>
                                     <label class="form-check-label" for="confirmAdmin">Confirm this user should have administrator privileges</label>
                                     <div class="invalid-feedback">You must confirm admin privileges</div>
                                 </div>
-                                
-                                <!-- Submit Button -->
                                 <div class="d-grid gap-2 mt-5">
                                     <button type="submit" class="btn btn-primary btn-lg" name="ins">
                                         <i class="fas fa-user-plus me-2"></i> Create Administrator Account
@@ -347,10 +325,8 @@ if(isset($_POST['ins'])){
         </div>
     </div>
 
-    <!-- Bootstrap Bundle with Popper -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- SweetAlert for beautiful alerts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <script>

@@ -88,12 +88,10 @@ include 'connection.php';?>
                     <div class="section-title bg-light rounded h-100 p-5">
                        
                         <?php
-                               // Initialize specialist session variable if not set
                                 if (!isset($_SESSION['specialist'])) {
-                               $_SESSION['specialist'] = 'Specialists'; // Default value
+                               $_SESSION['specialist'] = 'Specialists'; 
                              }
                     
-                                // Get specialist from database if spcid is set
                                 if(isset($_GET['spcid'])) {
                                   $spcid = mysqli_real_escape_string($con, $_GET['spcid']);
                                   $sql = "SELECT specialist FROM docspecialization WHERE ds_id = '$spcid' LIMIT 1";

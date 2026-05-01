@@ -1,0 +1,284 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+        }
+
+        .dash-body {
+            margin-left: 260px;
+            padding: 25px;
+            transition: margin-left 0.3s ease;
+            min-height: 100vh;
+        }
+
+        /* ---------- HEADER ---------- */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .page-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #64748b;
+        }
+
+        .date-text {
+            font-size: 14px;
+            text-align: right;
+            line-height: 1.4;
+        }
+
+        .date-big {
+            font-weight: 600;
+            font-size: 18px;
+            color: #334155;
+        }
+
+        .calendar-icon {
+            width: 44px;
+            height: 44px;
+            background: #e0f2fe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendar-icon img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .welcome-card {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            color: white;
+            box-shadow: 0 8px 20px rgba(37,99,235,0.25);
+        }
+
+        .welcome-card h1 {
+            font-size: 32px;
+            margin: 8px 0 15px;
+            font-weight: 700;
+        }
+
+        .welcome-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .btn-view-appointments {
+            background: white;
+            color: #2563eb;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .btn-view-appointments:hover {
+            background: #f0f9ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            flex: 1 1 200px;
+            background: white;
+            border-radius: 16px;
+            padding: 25px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+        }
+
+        .stat-info .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1e293b;
+            line-height: 1.2;
+        }
+
+        .stat-info .stat-label {
+            font-size: 15px;
+            color: #64748b;
+            margin-top: 6px;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background-size: 28px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #eff6ff;
+        }
+
+        .stat-icon.patients {
+            background-image: url('../img/icons/patients-hover.svg');
+        }
+
+        .stat-icon.appointments {
+            background-image: url('../img/icons/book-hover.svg');
+        }
+        .appointments-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px 25px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            max-height: 250px; 
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 400px;
+        }
+
+        .styled-table th {
+            text-align: left;
+            padding: 12px 16px;
+            background: #f8fafc;
+            color: #475569;
+            font-weight: 600;
+            border-bottom: 2px solid #e2e8f0;
+            white-space: nowrap;
+        }
+
+        .styled-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #334155;
+            font-size: 14px;
+        }
+
+        .styled-table tbody tr:hover {
+            background-color: #f0f9ff;
+            transition: background-color 0.2s;
+        }
+
+        .styled-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 20px;
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 992px) {
+            .dash-body {
+                margin-left: 0;
+                padding-bottom: 100px; 
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .welcome-card {
+                padding: 20px;
+            }
+
+            .welcome-card h1 {
+                font-size: 26px;
+            }
+
+            .stats-row {
+                flex-direction: column;
+            }
+
+            .stat-card {
+                width: 100%;
+            }
+
+            .appointments-section {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .date-text,
+            .calendar-icon {
+                display: none;
+            }
+
+            .page-title {
+                font-size: 22px;
+            }
+
+            .welcome-card p {
+                font-size: 15px;
+            }
+        }
+    

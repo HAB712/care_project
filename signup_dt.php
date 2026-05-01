@@ -44,8 +44,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
           $_SESSION["docemail"] = $email;
           $_SESSION["docid"] = mysqli_insert_id($con);
           $_SESSION["docphone"] = $phone;
-  
-          // Redirect only if role is patient (we know it is because we inserted it)
+
           echo "<script>alert('Registration successful'); window.location.href = './doctor/signup_dt.php';</script>";
       } else {
           echo "<script>alert('Error: Registration failed.'); window.history.back();</script>";

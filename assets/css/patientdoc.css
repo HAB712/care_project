@@ -1,0 +1,379 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+        }
+
+        .dash-body {
+            margin-left: 260px;
+            padding: 25px;
+            transition: margin-left 0.3s ease;
+            min-height: 100vh;
+        }
+
+        /* ---------- HEADER ---------- */
+        .patients-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .back-and-title {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-back {
+            background: #f1f5f9;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #334155;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-back:hover {
+            background: #e2e8f0;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #64748b;
+        }
+
+        .date-text {
+            font-size: 14px;
+            text-align: right;
+            line-height: 1.4;
+        }
+
+        .date-big {
+            font-weight: 600;
+            font-size: 18px;
+            color: #334155;
+        }
+
+        .calendar-icon {
+            width: 44px;
+            height: 44px;
+            background: #e0f2fe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendar-icon img {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* ---------- SEARCH BAR ---------- */
+        .search-section {
+            background: white;
+            border-radius: 12px;
+            padding: 15px 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .search-form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1 1 300px;
+            padding: 10px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #1e293b;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+
+        .btn-search {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-search:hover {
+            background: #1d4ed8;
+        }
+
+        /* Mobile-specific: hide original .hd search and show .sd search */
+        .search-desktop {
+            display: flex;
+        }
+
+        .search-mobile {
+            display: none;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 596px) {
+            .search-desktop {
+                display: none;
+            }
+            .search-mobile {
+                display: flex;
+            }
+        }
+
+        /* ---------- PATIENTS TABLE SECTION ---------- */
+        .table-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px 25px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        .styled-table th {
+            text-align: left;
+            padding: 12px 16px;
+            background: #f8fafc;
+            color: #475569;
+            font-weight: 600;
+            border-bottom: 2px solid #e2e8f0;
+            white-space: nowrap;
+        }
+
+        .styled-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #334155;
+            font-size: 14px;
+        }
+
+        .styled-table tbody tr:hover {
+            background-color: #f0f9ff;
+            transition: background-color 0.2s;
+        }
+
+        .styled-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .btn-view {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+
+        .btn-view:hover {
+            background: #1d4ed8;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #64748b;
+        }
+
+        .empty-state img {
+            width: 120px;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .empty-state p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* ---------- POPUP / OVERLAY ---------- */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.3s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .popup .close {
+            float: right;
+            font-size: 30px;
+            text-decoration: none;
+            color: #64748b;
+            line-height: 1;
+        }
+
+        .popup .close:hover {
+            color: #333;
+        }
+
+        .popup-content {
+            clear: both;
+            margin-top: 20px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .detail-value {
+            color: #475569;
+        }
+
+        .btn-ok {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .btn-ok:hover {
+            background: #1d4ed8;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 992px) {
+            .dash-body {
+                margin-left: 0;
+                padding-bottom: 100px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .patients-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .search-section {
+                padding: 15px;
+            }
+
+            .table-section {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .date-text,
+            .calendar-icon {
+                display: none;
+            }
+
+            .page-title {
+                font-size: 20px;
+            }
+
+            .popup {
+                padding: 20px;
+                width: 95%;
+            }
+        }

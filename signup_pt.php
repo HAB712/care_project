@@ -45,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
           $_SESSION["user_id"] = mysqli_insert_id($con);
           $_SESSION["user_phone"] = $phone;
   
-          // Redirect only if role is patient (we know it is because we inserted it)
+    
           echo "<script>alert('Registration successful'); window.location.href = './patient/login_pt.php';</script>";
       } else {
           echo "<script>alert('Error: Registration failed.'); window.history.back();</script>";
@@ -251,7 +251,7 @@ form.addEventListener("submit", function (event) {
         document.getElementById("lb2").innerHTML = "";
     }
 
-    // Email validation
+   
     if (!emailReg.test(email)) {
         document.getElementById("lb3").innerHTML = "Invalid Email";
         valid = false;

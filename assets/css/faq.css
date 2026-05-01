@@ -1,0 +1,62 @@
+
+        :root {
+            --primary-blue: #0d6efd;
+            --blue-hover: #0b5ed7;
+            --light-blue: #e7f1ff;
+            --primary-red: #dc3545;
+            --red-hover: #bb2d3b;
+            --sidebar-width: 250px;
+        }
+        
+        .dash-body {
+            padding: 20px;
+            margin-left: var(--sidebar-width);
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 992px) {
+            .dash-body {
+                margin-left: 0;
+                padding-bottom: 80px;
+            }
+        }
+        
+        .btn-soft-primary {
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+            border: 1px solid var(--primary-blue);
+        }
+        
+        .btn-soft-primary:hover {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+        
+        .faq-item {
+            border-left: 4px solid var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        
+        .action-buttons .btn {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        @media (max-width: 576px) {
+            .mobile-hidden {
+                display: none;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+        }
+        
+        .card-header.bg-warning {
+            background-color: #ffc107 !important;
+        }

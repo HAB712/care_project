@@ -7,7 +7,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role'] != 'A'){
 
 include("../connection.php");
 
-// Handle delete action
+
 if(isset($_GET['delid'])){
     $delid = mysqli_real_escape_string($con, $_GET['delid']);
     $quer = "SELECT * FROM doctor WHERE id='$delid'";
@@ -15,10 +15,9 @@ if(isset($_GET['delid'])){
     $row = mysqli_fetch_assoc($rest);
     $deleamil = $row['email'];
     
-    // First delete the doctor's signup record
     $query1 = "DELETE FROM signup WHERE email = '$deleamil'";
     $rest1 = mysqli_query($con, $query1);
-    // Then delete the doctor's record
+
     $deleteQuery = "DELETE FROM doctor WHERE id='$delid'";
     $rest2 = mysqli_query($con, $deleteQuery);
 
@@ -34,7 +33,6 @@ if(isset($_GET['delid'])){
     exit();
 }
 
-// Handle search functionality
 $searchQuery = "";
 if(isset($_POST['search']) && !empty($_POST['search'])){
     $search = mysqli_real_escape_string($con, $_POST['search']);
@@ -49,15 +47,10 @@ if(isset($_POST['search']) && !empty($_POST['search'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Bootstrap Icons -->
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-        
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">   
     <title>Doctors</title>
-    <style>
-                
+<style>             
      :root {
             --primary-blue: #0d6efd;
             --blue-hover: #0b5ed7;
@@ -66,14 +59,9 @@ if(isset($_POST['search']) && !empty($_POST['search'])){
             --red-hover: #bb2d3b;
             --sidebar-width: 250px;
         }
-      
-        
-    
             td{
                 font-size: 100%;
             }
-        
-        /* Responsive adjustments */
         @media (max-width: 1185px) {
              td{
                 font-size: 80%;
@@ -109,39 +97,39 @@ if(isset($_POST['search']) && !empty($_POST['search'])){
         }
 
         /* Custom soft primary button */
-.btn-primary-soft {
+ .btn-primary-soft {
   background-color: var(--light-blue);
   border: 1px solid var(--primary-blue);
   color: var(--primary-blue);
   transition: all 0.3s ease;
-}
+ }
 
-.btn-primary-soft:hover {
+ .btn-primary-soft:hover {
   background-color: var(--primary-blue);
   color: #fff;
-}
+ }
 
-.dash-body {
+ .dash-body {
   padding: 20px;
   margin-left: 260px;
   transition: margin-left 0.3s ease;
-}
+ }
 
-@media (max-width: 992px) {
+ @media (max-width: 992px) {
   .dash-body {
   padding: 20px;
   margin-left: 0;
-}
-}
+ }
+ }
 
-@media (max-width: 768px) {
+ @media (max-width: 768px) {
   .dates{
     display: hidden;
   }
   td{
          font-size: 70%;
      }
-}
+ }
         
         .btn {
             padding: 8px 20px;
@@ -181,14 +169,12 @@ if(isset($_POST['search']) && !empty($_POST['search'])){
   .dct{
          font-size: 110%;
      }
-}
-       
-        
-  </style>
+  }
+              
+</style>
  </head>
 <body>
  
-
     <?php include 'sidebar.php'; ?>
    
 

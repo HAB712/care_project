@@ -60,21 +60,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'Email must be less than 100 characters.';
     }
 
-    // Subject validation
+
     if (empty($subject)) {
         $errors[] = 'Subject is required.';
     } elseif (!preg_match("/^[a-zA-Z0-9\s\-.,!?]{5,100}$/", $subject)) {
         $errors[] = 'Subject must be 5-100 characters with only letters, numbers, spaces, and basic punctuation.';
     }
 
-    // Phone validation (international format)
+
     if (empty($phone)) {
         $errors[] = 'Phone number is required.';
     } elseif (!preg_match("/^\+?[\d\s\-()]{10,20}$/", $phone)) {
         $errors[] = 'Please enter a valid phone number (10-20 digits, may include +, spaces, hyphens, or parentheses).';
     }
 
-    // Message validation
+
     if (empty($message)) {
         $errors[] = 'Message is required.';
     } elseif (strlen($message) < 10) {

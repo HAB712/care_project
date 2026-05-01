@@ -90,10 +90,7 @@
             width: 20px;
             text-align: center;
         }
-        
-       
-   
-        
+         
         /* Responsive adjustments */
         @media (max-width: 992px) {
             .sidebar {

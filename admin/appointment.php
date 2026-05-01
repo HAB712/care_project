@@ -4,10 +4,7 @@
         header('location: login_ad.php');
     }
     
-    
     include("../connection.php");
-
-    // Handle date filter
 $filter_date = isset($_POST['sheduledate']) ? $_POST['sheduledate'] : '';
 $where_clause = "";
 
@@ -27,75 +24,8 @@ if (!empty($filter_date)) {
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-        
     <title>Appointments</title>
-    <style>
-           :root {
-            --primary-blue: #0d6efd;
-            --blue-hover: #0b5ed7;
-            --light-blue: #e7f1ff;
-            --primary-red: #dc3545;
-            --red-hover: #bb2d3b;
-            --sidebar-width: 250px;
-        }
-        
-        
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fade {
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        /* Custom soft primary button */
-.btn-primary-soft {
-  background-color: var(--light-blue);
-  border: 1px solid var(--primary-blue);
-  color: var(--primary-blue);
-  transition: all 0.3s ease;
-}
-
-.btn-primary-soft:hover {
-  background-color: var(--primary-blue);
-  color: #fff;
-}
-
-.dash-body {
-  padding: 20px;
-  margin-left: var(--sidebar-width);
-  transition: margin-left 0.3s ease;
-}
-@media (max-width: 992px) {
-  .dash-body {
-    margin-left: 0;
-    padding-bottom: 100px; /* for mobile bottom nav */
-  }
-
-}
-  
-
-@media (max-width: 768px) {
-  .dash-body {
-    margin-left: 0;
-    padding-bottom: 100px; /* for mobile bottom nav */
-  }
-}
-
- @media (max-width: 447px) {
-             .ap{
-                font-size: 100%;
-                padding-left: 8px;
-            }
-           .dash-body .dt {
-              display: none;
-            }
-        }
-
-        
-</style>
+    <link rel="stylesheet" href="../assets/css/appointdoc.css">
 </head>
 <body>
 
@@ -115,7 +45,6 @@ if (!empty($filter_date)) {
         </div>
       </div>
 
-      <!-- Filter Section -->
       <form method="post" class="row g-3 align-items-end mt-4">
         <div class="col-auto">
           <label for="date" class="form-label">Date</label>
@@ -125,8 +54,6 @@ if (!empty($filter_date)) {
           <button type="submit" name="filter" class="btn btn-outline-primary">Filter</button>
         </div>
       </form>
-
-      <!-- Appointment Table -->
       <div class="table-responsive">
         <form method="post" action="update_status.php">
           <table class="table table-bordered mt-4">
@@ -190,7 +117,6 @@ if (!empty($filter_date)) {
     </div>
   </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

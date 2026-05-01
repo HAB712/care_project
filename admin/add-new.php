@@ -26,7 +26,6 @@ if(isset($_POST['ins'])){
     
     $errors = [];
 
-    // Validation
     if (!preg_match('/^[0-9]{13}$/', $cnic)) {
         $errors[] = 'Invalid CNIC format. Please use 13 digits only.';
     }
@@ -51,7 +50,7 @@ if(isset($_POST['ins'])){
         $errors[] = "Please select at least one clinic address.";
     }
 
-    // Check for errors
+
     if (!empty($errors)) {
         $errorMessages = implode("\\n", $errors);
         echo "<script>alert('$errorMessages'); window.history.back();</script>";
@@ -69,10 +68,9 @@ if(isset($_POST['ins'])){
         exit();
     }
 
-    // Hash password
+   
     $hashpass = password_hash($pass, PASSWORD_BCRYPT);
 
-    // Handle file upload
     $image_name = $_FILES['image']['name'];
     $image_tmp = $_FILES['image']['tmp_name'];
     $img_size = $_FILES['image']['size'];
@@ -106,7 +104,6 @@ if(isset($_POST['ins'])){
             echo "<script>alert('Error in signup".mysqli_error($con)."'); window.history.back();</script>";
             exit();
         }
-        
         
         $query = "INSERT INTO doctor (name, email, phone, gender, DOB, city, CNIC, education, experience, speciality, shift, address, drimage) 
                  VALUES ('$name','$email','$phone','$gender','$dob','$city','$cnic','$educate','$exp','$special','$shift','$clinic','$new_name')";
@@ -500,7 +497,7 @@ if(isset($_POST['ins'])){
                     </div>
                 </div>
                 
-                <!-- Form Section -->
+        
                 <div class="col-md-8 form-section">
                     <h3 class="mb-4">Add New Doctor</h3>
                     
@@ -710,14 +707,13 @@ if(isset($_POST['ins'])){
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         
-       // Updated regex patterns
+       
 const nameReg = /^[A-Za-z]{3,50}$/; 
 const phoneReg = /^[0][3][0-9]{2}[-][0-9]{7}$/;    
-const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  // Standard email validation
+const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
 const passReg = /^(?=.*[@.\-#$%^&*=+?!])[A-Za-z0-9@.\-#$%^&*=+?!]{6,}$/;
 const cnicReg = /^[0-9]{13}$/;
 
@@ -732,7 +728,7 @@ form.addEventListener("submit", function (event) {
 
     let valid = true;
 
-    // Name validation
+
     if (!nameReg.test(name)) {
         document.getElementById("lb1").innerHTML = "No Space in Name";
         valid = false;
@@ -740,7 +736,6 @@ form.addEventListener("submit", function (event) {
         document.getElementById("lb1").innerHTML = "";
     }
 
-    // Phone validation
     if (!phoneReg.test(phone)) {
        document.getElementById("lb2").innerHTML = "Invalid Phone";
         valid = false;
@@ -748,7 +743,6 @@ form.addEventListener("submit", function (event) {
         document.getElementById("lb2").innerHTML = "";
     }
 
-    // Email validation
     if (!emailReg.test(email)) {
         document.getElementById("lb3").innerHTML = "Invalid email format";
         valid = false;
@@ -756,7 +750,6 @@ form.addEventListener("submit", function (event) {
         document.getElementById("lb3").innerHTML = "";
     }
 
-    // Password validation
     if (!passReg.test(pass)) {
          document.getElementById("lb4").innerHTML = "Enter Strong Password";
         valid = false;
@@ -776,26 +769,18 @@ form.addEventListener("submit", function (event) {
     }
 });
         
-        // Gender selection
         document.querySelectorAll('.gender-option').forEach(option => {
             option.addEventListener('click', function() {
-                // Remove active class from all options
                 document.querySelectorAll('.gender-option').forEach(opt => {
                     opt.classList.remove('active');
                 });
-                
-                // Add active class to clicked option
                 this.classList.add('active');
-                
-                // Check the radio input
                 const radio = this.querySelector('input[type="radio"]');
                 radio.checked = true;
             });
         });
         
-       
-        
-        // Add animation to form inputs on focus
+
         const inputs = document.querySelectorAll('.form-control, .form-select, textarea');
         inputs.forEach(input => {
             input.addEventListener('focus', function() {
@@ -803,7 +788,7 @@ form.addEventListener("submit", function (event) {
             });
         });
         
-        // Floating animation for form elements
+   
         const animateElements = document.querySelectorAll('.animate-input');
         animateElements.forEach((el, index) => {
             el.style.animationDelay = `${index * 0.1}s`;

@@ -40,7 +40,7 @@ if (!$stmt) {
 
 $stmt->bind_param("sssss", $name, $email, $subject, $phone, $message);
 
-// 6. Execute and redirect
+
 if ($stmt->execute()) {
     header('Location: contact.php?status=success');
 } else {

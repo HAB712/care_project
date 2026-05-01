@@ -16,11 +16,10 @@ $search_value = "";
 
 
 if(isset($_POST['search']) && !empty($_POST['search'])){
-    $search_value = mysqli_real_escape_string($con, $_POST['search']); // Sanitize input
+    $search_value = mysqli_real_escape_string($con, $_POST['search']); 
     $search_condition = " WHERE city_name LIKE '%$search_value%'";
 } 
 
-// Combine the main query with search condition
 $sqlmain .= $search_condition;
 ?>
 
@@ -32,10 +31,8 @@ $sqlmain .= $search_condition;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <title>Patients</title>
-
-    <style>
+<style>
         /* Add this to your existing <style> section */
 .overlay {
     display: none;
@@ -133,7 +130,7 @@ $sqlmain .= $search_condition;
      }
 }
 
-    </style>
+</style>
 </head>
 <body>
 

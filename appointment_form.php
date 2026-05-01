@@ -48,13 +48,13 @@ if(isset($_POST['ins'])){
     
     // VALIDATION CHECKS
     
-    // 1. Check if date is in past
+  
     $today = date('Y-m-d');
     if($appdate < $today) {
         $errors[] = "Cannot book appointment for past dates. Please select a future date.";
     }
     
-    // 2. Check if patient already has appointment on same date
+
     $check_patient_appointment = "SELECT COUNT(*) as patient_count FROM appointment 
                                   WHERE pt_email = '$email' AND appdate = '$appdate' AND status != 'cancelled'";
     $result_patient = mysqli_query($con, $check_patient_appointment);
@@ -63,8 +63,7 @@ if(isset($_POST['ins'])){
     if($patient_data['patient_count'] > 0) {
         $errors[] = "You already have an appointment on " . date('M d, Y', strtotime($appdate)) . ". Please choose a different date.";
     }
-    
-    // 3. Check if doctor has reached daily appointment limit (10 appointments)
+
     $check_daily_limit = "SELECT COUNT(*) as daily_count FROM appointment 
                           WHERE docid = '$docid' AND appdate = '$appdate' AND status != 'cancelled'";
     $result_daily = mysqli_query($con, $check_daily_limit);
@@ -74,7 +73,7 @@ if(isset($_POST['ins'])){
         $errors[] = "Doctor has reached the maximum appointments (10) for " . date('M d, Y', strtotime($appdate)) . ". Please choose another date.";
     }
     
-    // 4. Check if time slot is already booked
+
     $check_time_slot = "SELECT COUNT(*) as slot_count FROM appointment 
                         WHERE docid = '$docid' AND appdate = '$appdate' AND apptime = '$apptime' AND status != 'cancelled'";
     $result_slot = mysqli_query($con, $check_time_slot);
@@ -84,7 +83,7 @@ if(isset($_POST['ins'])){
         $errors[] = "The selected time slot is already booked. Please choose another time.";
     }
     
-    // If no errors, insert appointment
+
     if(empty($errors)) {
         $query = "INSERT INTO appointment(specialistid, docid, pt_name, dob, pt_gender, pt_email, phone, 
                   pt_address, country, appdate, apptime, message, status) 
@@ -105,7 +104,6 @@ if(isset($_POST['ins'])){
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

@@ -1,23 +1,4 @@
-<?php
-session_start();
 
-if (!isset($_SESSION['role']) || $_SESSION['role'] != 'patient') {
-    header('location: login_pt.php');
-}
-
-include "../connection.php";
-
-$username = ucfirst($_SESSION["user_name"]);
-$email = $_SESSION["user_email"];
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings</title>
-    <style>
         * {
             margin: 0;
             padding: 0;
@@ -29,8 +10,6 @@ $email = $_SESSION["user_email"];
             background-color: #f4f7fc;
             color: #333;
         }
-
-     
         .dash-body {
             margin-left: 260px;
             padding: 25px;
@@ -119,8 +98,14 @@ $email = $_SESSION["user_email"];
             border-radius: 16px;
             padding: 25px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-            max-width: 600px;
-            margin: 0 auto; /* center the card */
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .settings-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
         .settings-card {
@@ -134,13 +119,12 @@ $email = $_SESSION["user_email"];
             text-decoration: none;
             color: inherit;
             transition: all 0.2s ease;
-            cursor: pointer;
         }
 
         .settings-card:hover {
             background: #f0f9ff;
             border-color: #bae6fd;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
             transform: translateY(-2px);
         }
 
@@ -148,12 +132,19 @@ $email = $_SESSION["user_email"];
             width: 50px;
             height: 50px;
             border-radius: 14px;
-            background-color: #eff6ff;
-            background-image: url('../img/icons/view-iceblue.svg');
             background-size: 28px;
             background-position: center;
             background-repeat: no-repeat;
+            background-color: #eff6ff;
             flex-shrink: 0;
+        }
+
+        .icon-edit {
+            background-image: url('../img/icons/doctors-hover.svg');
+        }
+
+        .icon-view {
+            background-image: url('../img/icons/view-iceblue.svg');
         }
 
         .settings-text h3 {
@@ -169,7 +160,7 @@ $email = $_SESSION["user_email"];
             line-height: 1.5;
         }
 
-        /* ---------- RESPONSIVE ---------- */
+
         @media (max-width: 992px) {
             .dash-body {
                 margin-left: 0;
@@ -212,48 +203,8 @@ $email = $_SESSION["user_email"];
             .page-title {
                 font-size: 20px;
             }
+
+            .settings-text h3 {
+                font-size: 16px;
+            }
         }
-    </style>
-</head>
-<body>
-    <?php include 'sidebar.php'; ?>
-
-    <div class="dash-body">
-        <!-- HEADER -->
-        <div class="settings-header">
-            <div class="back-and-title">
-                <a href="index.php" style="text-decoration:none;">
-                    <button class="btn-back">← Back</button>
-                </a>
-                <h2 class="page-title">Settings</h2>
-            </div>
-            <div class="header-right">
-                <div class="date-text">
-                    <p style="margin:0; font-size:13px;">Today's Date</p>
-                    <p class="date-big" style="margin:0;">
-                        <?php
-                        date_default_timezone_set('Asia/Karachi');
-                        echo date('Y-m-d');
-                        ?>
-                    </p>
-                </div>
-                <div class="calendar-icon">
-                    <img src="../img/calendar.svg" alt="calendar">
-                </div>
-            </div>
-        </div>
-
-        <!-- SETTINGS CARD -->
-        <div class="settings-section">
-            <a href="update-account.php" class="settings-card">
-                <div class="settings-icon"></div>
-                <div class="settings-text">
-                    <h3>View & Edit Account Details</h3>
-                    <p>Manage your personal information and account preferences.</p>
-                </div>
-            </a>
-           
-        </div>
-    </div>
-</body>
-</html>
