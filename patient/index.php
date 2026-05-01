@@ -346,7 +346,7 @@ $upcomingCount = mysqli_num_rows($upcomingResult);
     <div class="dash-body">
         <!-- HEADER -->
         <div class="dashboard-header">
-            <h2 class="page-title">Home</h2>
+           <a href="../index.php" style="text-decoration: none;"> <h2 class="page-title">Home</h2> </a> 
             <div class="header-right">
                 <div class="date-text">
                     <p style="margin:0; font-size:13px;">Today's Date</p>
